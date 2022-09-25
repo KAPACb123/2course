@@ -5,3 +5,10 @@ Q:\2курс\OOP\Lab01\Lab01\obj\Debug\Lab01.csproj.CoreCompileInputs.cache
 Q:\2курс\OOP\Lab01\Lab01\obj\Debug\Lab01.exe
 Q:\2курс\OOP\Lab01\Lab01\obj\Debug\Lab01.pdb
 Q:\2курс\OOP\Lab01\Lab01\obj\Debug\Lab01.csproj.AssemblyReference.cache
+Q:\2курс\2course\OOP\Lab01\Lab01\bin\Debug\Lab01.exe.config
+Q:\2курс\2course\OOP\Lab01\Lab01\bin\Debug\Lab01.exe
+Q:\2курс\2course\OOP\Lab01\Lab01\bin\Debug\Lab01.pdb
+Q:\2курс\2course\OOP\Lab01\Lab01\obj\Debug\Lab01.csproj.AssemblyReference.cache
+Q:\2курс\2course\OOP\Lab01\Lab01\obj\Debug\Lab01.csproj.CoreCompileInputs.cache
+Q:\2курс\2course\OOP\Lab01\Lab01\obj\Debug\Lab01.exe
+Q:\2курс\2course\OOP\Lab01\Lab01\obj\Debug\Lab01.pdb

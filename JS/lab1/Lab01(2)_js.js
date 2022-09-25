@@ -9,6 +9,11 @@
  let perimeter = "120mm";
  let UserMessage = "Введенные данные неверны"
 
+//Задание 3
+
+let answer = 1/0;
+alert(`Типы переменных ${typeof(5)} ${typeof("Name")} ${typeof(0)} ${typeof(0.23)} ${typeof(answer)} ${typeof(true)} ${typeof(null)} `);
+
 //Задание 4
 
  let SurfaceQuadrilateral = 45 * 21;
@@ -32,20 +37,22 @@
  Compare('53',45);
  Compare(false,3);
  Compare(true,"3");
- Compare(3,'5мм');
+ Compare(3,"5мм");
  Compare(null,undefined);
 
 
  function Compare(a,b){
- if(a>b){
-     alert(`${a} большe ${b}`);
- }
- else if(a==b){
+  if(a==b){
      alert(`${a} = ${b}`);
+  } 
+  else if(a>b){
+    alert(`${a} > ${b}`);
  }
- else{
-     alert(`${b} большe ${a}`);
- }
+ else if(a<b){
+  alert(`${a} < ${b}`);
+}
+else 
+alert(`NaN`);
  }
 
   //Задание 8
@@ -131,6 +138,7 @@ let ChoiceNumber=0;
 while(ChoiceNumber < 100){
     ChoiceNumber = +prompt(`Число не больше 100`);  
 }
+1142
 
  //Задание 16
  

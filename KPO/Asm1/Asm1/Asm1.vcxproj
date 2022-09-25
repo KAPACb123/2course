@@ -140,7 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <MASM Include="Lab1ASM.asm" />
+    <MASM Include="Lab1ASM.asm">
+      <EnableFalseConditionalsInListing Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EnableFalseConditionalsInListing>
+      <AssembledCodeListingFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</AssembledCodeListingFile>
+    </MASM>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

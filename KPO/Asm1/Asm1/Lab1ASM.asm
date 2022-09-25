@@ -22,10 +22,10 @@ START:                          ; метка
     PUSH MB_OK                        
     PUSH OFFSET STR1                  
     PUSH OFFSET STR2
-
     PUSH HW
     CALL MessageBoxA                ; вызов функции
-  push-1                        ; код возврата процесса Windows (параметр ExitProcess)
+    ;INVOKE MessageBoxA, HW, OFFSET STR2, OFFSET STR1, MB_OK
+  push -1                        ; код возврата процесса Windows (параметр ExitProcess)
   call ExitProcess                  ; так завершается любой процесс Windows
 main ENDP                        ; конец процедуры 
 
