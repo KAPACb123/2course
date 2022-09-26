@@ -1,0 +1,114 @@
+Microsoft (R) Macro Assembler Version 14.29.30146.0	    09/26/22 16:35:04
+Asm3.asm						     Page 1 - 1
+
+
+				.586P                          ;система команд (процессор Pentium)
+				.MODEL FLAT, STDCALL                  ;модель памяти, соглашение о вызовах
+				includelib kernel32.lib                  ;компановщику: компоновать с kernel32
+
+				ExitProcess PROTO : DWORD                ;прототип функции для завершения процесса Windows
+				MessageBoxA PROTO : DWORD, : DWORD, : DWORD, : DWORD  ;прототип API-функции MessageBoxA (вывод в окно)
+
+				.STACK 4096                        ;выделение стека объемом 4 мегабайта
+
+ 00000000			.DATA                          ;сегмент данных
+ 00000000 008A 003B 0044	  myWords WORD 8Ah, 3Bh, 44h, 5Fh, 99h
+	   005F 0099
+ 0000000A 00000002		  myNumbers dd 2,2,2,0,2,2,2
+	   00000002
+	   00000002
+	   00000000
+	   00000002
+	   00000002
+	   00000002
+ 00000026 4158 0000		  str1 dw "AX", 0
+ 0000002A 00000030		  str2 dd "0",
+
+
+ 00000000			.CODE                          ;сегмент кода
+ 00000000			main PROC                        ;точка входа main
+ 00000000			start:                          ;метка
+
+				    ;A
+
+				   ;mov EDI, 2
+				   ;mov AX, [myWords + EDI] 
+				   ;mov BX, myWords[0]
+				   ;mov str2, BX
+				   ;mov str2+1, AX 
+				   ;INVOKE MessageBoxA, 0,offset str2, offset str1, 0
+
+				   ;B
+
+ 00000000  BA 00000000		   mov EDX, 0
+ 00000005  B8 00000000		   mov EAX, 0
+ 0000000A  B9 00000007		   mov ECX, 7
+ 0000000F  BB 00000001		   mov EBX, 1
+ 00000014			   CYCLE:
+ 00000014  03 82 0000000A R	   add EAX, myNumbers[EDX]
+ 0000001A  83 82 0000000A R	   add myNumbers[EDX], 0
+	   00
+ 00000021  74 07		   jz f1
+ 00000023  83 C2 04		   add EDX, 4
+ 00000026  E2 EC		   loop CYCLE
+ 00000028  EB 07		   jmp fin
+
+ 0000002A			   f1:
+ 0000002A  BB 00000000		   mov EBX, 0
+ 0000002F  EB 00		   jmp fin
+				 
+ 00000031			   fin:
+ 00000031  6A 00		    push 0                      ;код возврата процесса Windows (параметр ExitProcess)
+ 00000033  E8 00000000 E	    call ExitProcess                ;так завершается любой процесс Windows
+ 00000038			main ENDP;                      ;конец процедуры
+
+				end main;
+Microsoft (R) Macro Assembler Version 14.29.30146.0	    09/26/22 16:35:04
+Asm3.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 0000002E Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000038 Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+MessageBoxA  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000038 Public STDCALL
+  start  . . . . . . . . . . . .	L Near	 00000000 _TEXT	
+  CYCLE  . . . . . . . . . . . .	L Near	 00000014 _TEXT	
+  f1 . . . . . . . . . . . . . .	L Near	 0000002A _TEXT	
+  fin  . . . . . . . . . . . . .	L Near	 00000031 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+myNumbers  . . . . . . . . . . .	DWord	 0000000A _DATA	
+myWords  . . . . . . . . . . . .	Word	 00000000 _DATA	
+str1 . . . . . . . . . . . . . .	Word	 00000026 _DATA	
+str2 . . . . . . . . . . . . . .	DWord	 0000002A _DATA	
+
+	   0 Warnings
+	   0 Errors
